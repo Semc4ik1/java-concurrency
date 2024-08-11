@@ -3,18 +3,17 @@ package task1.atomic;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProcessingThread implements Runnable {
-    private static final AtomicInteger count = new AtomicInteger();
-    private static final int MAX_COUNT =50;
+    private static final AtomicInteger COUNT = new AtomicInteger();
 
     @Override
     public void run() {
-        while (count.incrementAndGet() < MAX_COUNT) {
-            count.incrementAndGet();
+        for (int i = 1; i < 50; i++) {
+            COUNT.incrementAndGet();
         }
     }
 
-    public static AtomicInteger getCount () {
-        return count;
+    public static int getCount() {
+        return COUNT.get();
     }
 
 }

@@ -1,20 +1,19 @@
 package task1.synchronization;
 
 public class ProcessingThread implements Runnable {
-    private static volatile int count = 0;
-    private final int MAX_COUNT =50;
+    private static int count = 0;
+
 
     @Override
     public void run() {
-        while (true) {
+        for (int i = 1; i < 50; i++) {
             synchronized (ProcessingThread.class) {
-                if (count >= MAX_COUNT) {
-                    break;
-                }
                 count++;
             }
         }
     }
+
+
     public static synchronized int getCount() {
         return count;
     }

@@ -3,11 +3,17 @@ package task1.synchronization;
 public class Main {
     private static final int NUM_THREADS = Runtime.getRuntime().availableProcessors();
 
-    public static void main(String[] args) {
-        for(int i=0; i < NUM_THREADS; i++) {
-            ProcessingThread processingThread = new ProcessingThread();
-            Thread thread = new Thread(processingThread);
-            thread.start();
+    public static void main(String[] args) throws InterruptedException {
+        Thread[] threads = new Thread[NUM_THREADS];
+
+        for (int i = 0; i < NUM_THREADS; i++) {
+            task1.atomic.ProcessingThread processingThread = new task1.atomic.ProcessingThread();
+            threads[i] = new Thread(processingThread);
+            threads[i].start();
+        }
+
+        for (int i = 0; i < NUM_THREADS; i++) {
+            threads[i].join();
         }
 
         System.out.println(STR."Результат \{ProcessingThread.getCount()}");
