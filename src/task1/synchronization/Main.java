@@ -7,7 +7,7 @@ public class Main {
         Thread[] threads = new Thread[NUM_THREADS];
 
         for (int i = 0; i < NUM_THREADS; i++) {
-            task1.atomic.ProcessingThread processingThread = new task1.atomic.ProcessingThread();
+            ProcessingThread processingThread = new ProcessingThread();
             threads[i] = new Thread(processingThread);
             threads[i].start();
         }
